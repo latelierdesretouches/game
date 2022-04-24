@@ -2,6 +2,7 @@ import imp
 import pygame
 from player import Player
 from enemy import Enemy
+from sounds import SoundManager
 
 
 class Game():
@@ -21,6 +22,9 @@ class Game():
 
         # groupe d'enemy
         self.all_enemy = pygame.sprite.Group()
+
+        # gerer son
+        self.sound_manager = SoundManager()
 
         # mettre score à 0
         self.score = 0

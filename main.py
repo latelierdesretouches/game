@@ -8,10 +8,11 @@ pygame.display.set_caption("comet fall Game")
 screen = pygame.display.set_mode((1080, 720))
 
 # importer arriere plan du jeu
-background = pygame.image.load('assets/bg.jpg')
+background = pygame.image.load('assets/background3.jpg')
+background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
 
 # importer ecran d'acceuil
-banner = pygame.image.load('assets/banner.png')
+banner = pygame.image.load('assets/pjfond2.png')
 banner = pygame.transform.scale(banner, (500, 500))
 banner_rect = banner.get_rect()
 banner_rect.x = screen.get_width()/4
@@ -30,7 +31,7 @@ running = True
 # boucle tant que cette condition est vrai
 while running:
     # appliquer arriere plan du jeu
-    screen.blit(background, (0, -200))
+    screen.blit(background, (0, 0))
 
     # verifier si le jeu a commencé
     if game.is_playing:
@@ -68,3 +69,6 @@ while running:
             if play_button_rect.collidepoint(event.pos):
                 # jeux en mode lancé
                 game.start()
+
+                # jouer le son
+                game.sound_manager.play('banner_sound')

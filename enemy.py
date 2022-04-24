@@ -12,8 +12,8 @@ class Enemy(pygame.sprite.Sprite):
 		super().__init__()
 
 		#load image et gestion position
-		self.image = pygame.image.load('assets/comet.png')
-		self.image = pygame.transform.scale(self.image, (120,70))
+		self.image = pygame.image.load('assets/enemy.jpg')
+		self.image = pygame.transform.scale(self.image, (50,50))
 		self.rect = self.image.get_rect()
 		self.rect.x  = randint(0,900)
 		self.rect.y = randint(-200, -100)
@@ -26,7 +26,7 @@ class Enemy(pygame.sprite.Sprite):
 		self.max_health = 50
 		
 		#attack
-		self.attack = 34
+		self.attack = 25
 
 	def damage(self, amount):
 		#infliger dégats
@@ -53,9 +53,11 @@ class Enemy(pygame.sprite.Sprite):
 
 			# sinon dégat
 			else:
+				self.game.sound_manager.play('beurk')
 				self.game.player.damage(self.attack)
 				self.damage(self.health)
 		
 		else:
+			self.game.sound_manager.play('wow')
 			self.damage(self.health)
 			self.game.score +=1
